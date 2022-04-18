@@ -51,9 +51,9 @@ public class NeighbourNode
         this.line = line;
         this.distance = distance;
     }
-    public void CalculateDistance(GameObject node)
+    public void CalculateDistance(GameObject nodeGameObject)
     {
-        distance = Vector2.Distance(node.transform.position, this.node.transform.position);
+        distance = Vector2.Distance(nodeGameObject.transform.position, node.transform.position);
     }
 
     public void SetDistance(float distance)
