@@ -5,33 +5,16 @@ public class GeneralManager : MonoBehaviour
 {
     [SerializeField] GameObject selectedObject;
     public GameObject node;
+    public GameObject cursorObject;
     int i = 0;
-
-    LineRendererCS[] lines;
-    GameObject[] nodes;
-
-    private void Start()
-    {
-        nodes = GameObject.FindGameObjectsWithTag("node");
-    }
-    //call a function that will call the SetLine function in the LineRendererCS with the parameter of two nodes
-    public void SetLine()
-    {
-        for (int i = 0; i < nodes.Length-1; i++)
-        {
-            lines[i].SetLine(nodes[i], nodes[++i]);
-        }    
-    }
-
-
-
 
     private void Update()
     {
         MouseInput();
-        SetLine();
+        //cursorObject position equals to cursor position
+        cursorObject.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
-    
+
     void MouseInput()
     {
         if (Input.GetMouseButton(0))
@@ -50,7 +33,14 @@ public class GeneralManager : MonoBehaviour
                 }
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<SpriteRenderer>().color = Color.cyan;
-                Debug.Log(hit.collider.gameObject.name);
+            }
+            else
+            {
+                selectedObject = null;
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("node"))
+                {
+                    obj.GetComponent<SpriteRenderer>().color = Color.white;
+                }
             }
         }
     }
