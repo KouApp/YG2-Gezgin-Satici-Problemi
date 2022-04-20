@@ -10,7 +10,7 @@ public class GeneralManager : MonoBehaviour
 
     private void Update()
     {
-        MouseInput();
+        //MouseInput();
         //cursorObject position equals to cursor position
         cursorObject.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }

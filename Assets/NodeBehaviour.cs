@@ -21,9 +21,14 @@ public class NodeBehaviour : MonoBehaviour
         difference = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
     }
 
+    private void Update()
+    {
+        
+    }
+
     void MouseInput()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(0))
         {
             Vector2 raycastPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(raycastPosition, Vector2.zero);
@@ -33,12 +38,13 @@ public class NodeBehaviour : MonoBehaviour
                 Debug.Log(hit.collider.gameObject.name);
             }
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            transform.position = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition) - difference;
+        }
     }
-    
-    private void OnMouseDrag()
-    {
-        transform.position = (Vector2)mainCam.ScreenToWorldPoint(Input.mousePosition) - difference;
-    }
+
     
     
     

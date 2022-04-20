@@ -6,16 +6,20 @@ public class LineRendererCS : MonoBehaviour
 {
     public GameObject lrStart;
     public GameObject lrEnd;
-    LineRenderer lr;
-    void Start()
+    [SerializeField]LineRenderer lr;
+    void Awake()
     {
         if (lr == null)
         {
             lr = GetComponent<LineRenderer>();
         }
     }
-    
-    public void SetLine(GameObject lrStart, GameObject lrEnd)
+    public void SetLines(GameObject lrStart, GameObject lrEnd)
+    {
+        this.lrStart = lrStart;
+        this.lrEnd = lrEnd;
+    }
+    private void SetLine(GameObject lrStart, GameObject lrEnd)
     {
         if (lrStart != null && lrEnd != null)
         {
