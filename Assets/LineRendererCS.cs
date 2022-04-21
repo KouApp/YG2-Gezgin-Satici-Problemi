@@ -9,6 +9,7 @@ public class LineRendererCS : MonoBehaviour
     [SerializeField]LineRenderer lr;
     void Awake()
     {
+        this.name = "line" + this.GetInstanceID();
         if (lr == null)
         {
             lr = GetComponent<LineRenderer>();
@@ -16,8 +17,8 @@ public class LineRendererCS : MonoBehaviour
     }
     public void SetLines(GameObject lrStart, GameObject lrEnd)
     {
-        this.lrStart = lrStart;
-        this.lrEnd = lrEnd;
+            this.lrStart = lrStart;
+            this.lrEnd = lrEnd;
     }
     private void SetLine(GameObject lrStart, GameObject lrEnd)
     {
@@ -28,8 +29,12 @@ public class LineRendererCS : MonoBehaviour
         }
     }
 
+
     void Update()
     {
-        SetLine(lrStart, lrEnd);
+        if (lrStart != null && lrEnd != null)
+            SetLine(lrStart, lrEnd);
+        else
+            Destroy(this.gameObject);
     }
 }

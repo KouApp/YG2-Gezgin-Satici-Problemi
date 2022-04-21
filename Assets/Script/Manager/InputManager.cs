@@ -42,15 +42,12 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Mouse Down");
             Vector2 raycastPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(raycastPosition, Vector2.zero);
             if (hit.collider != null)
             {
-                Debug.Log("Hit");
                 if (hit.transform.CompareTag("node"))
                 {
-                    Debug.Log(hit.transform.gameObject.name);
                     currentLeftSelected = hit.transform.gameObject;
                     //difference = (Vector2)mainCamera.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
                 }
@@ -102,21 +99,25 @@ public class InputManager : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(1))
         {
-            GameObject temp = tempRightSelected;
-            tempRightSelected = tempRightSelected.GetComponent<TempNode>().node;
-            if (tempRightSelected)
+            if (currentRightSelected != null)
             {
-                tempLine.SetLines(currentRightSelected, tempRightSelected);
-                currentRightSelected.GetComponent<NodeBehaviour>().AddNeightbour(new NeighbourNode(tempRightSelected.GetComponent<NodeBehaviour>(),tempLine,0));
-                tempRightSelected.GetComponent<NodeBehaviour>().AddNeightbour(new NeighbourNode(currentRightSelected.GetComponent<NodeBehaviour>(), tempLine, 0));
+                GameObject temp = tempRightSelected;
+                tempRightSelected = tempRightSelected.GetComponent<TempNode>().node;
+                if (tempRightSelected)
+                {
+                    tempLine.SetLines(currentRightSelected, tempRightSelected);
+                    currentRightSelected.GetComponent<NodeBehaviour>().AddNeightbour(new NeighbourNode(tempRightSelected.GetComponent<NodeBehaviour>(), tempLine, 0));
+                    tempRightSelected.GetComponent<NodeBehaviour>().AddNeightbour(new NeighbourNode(currentRightSelected.GetComponent<NodeBehaviour>(), tempLine, 0));
+                }
+                else
+                {
+                    Destroy(tempLine.gameObject);
+                    Destroy(temp.gameObject);
+                }
+                currentRightSelected = null;
+                Destroy(temp);
             }
-            else
-            {
-                Destroy(tempLine.gameObject);
-                Destroy(temp.gameObject);
-            }
-            currentRightSelected = null;
-            Destroy(temp);
+            
         }
     }
 }
