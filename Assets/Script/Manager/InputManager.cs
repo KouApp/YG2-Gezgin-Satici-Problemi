@@ -115,6 +115,7 @@ public class InputManager : MonoBehaviour
                     Destroy(temp.gameObject);
                 }
                 currentRightSelected = null;
+                tempRightSelected = null;
                 Destroy(temp);
             }
             

@@ -11,8 +11,7 @@ public class NodeBehaviour : MonoBehaviour
     public  List<NeighbourNode> neightbours = new();
 
     private Camera mainCam;
-    public TextMeshPro tmpro;
-    GeneralManager gm;
+    public TextMeshProUGUI tmpro;
 
     private void Awake()
     {
@@ -22,11 +21,10 @@ public class NodeBehaviour : MonoBehaviour
     
     private void Start()
     {
-        gm = GetComponent<GeneralManager>();
-        Transform child = transform.GetChild(0);
-        tmpro = child.transform.GetChild(0).GetComponent<TextMeshPro>();              
-        //aha bu anasýný siktimin koduyla tam 3 saat uðraþtým.
-        Debug.Log(tmpro.name);
+        var child = transform.GetChild(0);
+        var child2 = child.transform.GetChild(0).gameObject;
+        tmpro = child2.transform.GetComponent<TextMeshProUGUI>();
+        tmpro.text = gameObject.name;
     }
 
     private void OnMouseDown()

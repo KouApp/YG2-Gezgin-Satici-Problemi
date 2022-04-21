@@ -24,8 +24,13 @@ public class GeneralManager : MonoBehaviour
     public GameObject helpPanel;
     public GameObject settingsPanel;
 
+    [Header("CAMERA")]
+    public Camera mainCamera;
+    public float camMoveSpeed = 5f;
+
     private void Awake()
     {
+        mainCamera = Camera.main;
         if (instance == null)
         {
             instance = this;
@@ -70,10 +75,53 @@ public class GeneralManager : MonoBehaviour
     private void Update()
     {
         MouseInput();
+        CameraZoom();
+        CameraMovement();
         //if press esc, call ClassAll
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CloseAll();
+        }
+    }
+
+    void CameraZoom()
+    {
+        //make zoom in and out with mouse scroll
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            mainCamera.orthographicSize -= 0.2f;
+            if (mainCamera.orthographicSize <= 0.4f)
+            {
+                mainCamera.orthographicSize = 0.4f;
+            }
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            mainCamera.orthographicSize += 0.2f;
+            if (mainCamera.orthographicSize >= 9f)
+            {
+                mainCamera.orthographicSize = 9f;
+            }            
+        }
+    }
+
+    void CameraMovement()
+    {
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            mainCamera.transform.position += new Vector3(camMoveSpeed * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            mainCamera.transform.position -= new Vector3(camMoveSpeed * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            mainCamera.transform.position -= new Vector3(0, camMoveSpeed * Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            mainCamera.transform.position += new Vector3(0, camMoveSpeed * Time.deltaTime, 0);
         }
     }
 
@@ -83,8 +131,9 @@ public class GeneralManager : MonoBehaviour
         {
             Vector2 raycastPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(raycastPosition, Vector2.zero);
+            Debug.Log(hit.collider.name);
 
-            if (hit.collider.CompareTag("node"))
+            if (hit.collider != null && hit.collider.CompareTag("node"))
             {
                 if (hit.collider != selectedObject)
                 {
@@ -96,11 +145,7 @@ public class GeneralManager : MonoBehaviour
                 selectedObject = hit.collider.gameObject;
                 selectedObject.GetComponent<SpriteRenderer>().color = Color.cyan;
             }
-            else if(hit.transform != null && !hit.collider.gameObject.CompareTag("node"))
-            {
-                
-            }
-            else if (hit.transform == null)
+            else if (!hit.collider.CompareTag("node"))
             {
                 selectedObject = null;
                 foreach (GameObject obj in GameObject.FindGameObjectsWithTag("node"))
