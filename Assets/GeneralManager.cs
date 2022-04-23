@@ -30,7 +30,7 @@ public class GeneralManager : MonoBehaviour
     public float camMoveSpeed = 5f;
 
     [Header("SETTINGS")]
-    public bool isDistanceText = true;
+    public bool isDistanceEnable = true;
 
 
     private void Awake()
@@ -162,13 +162,19 @@ public class GeneralManager : MonoBehaviour
 
     public void RemoveSelectedObject()
     {
+        Debug.Log("ife henüz girmedi");
         if (selectedObject != null)
         {
-            Destroy(selectedObject);
-            nodes.Remove(selectedObject.GetComponent<NodeBehaviour>());
-            
+            Debug.Log("girdi");
+            NodeBehaviour node = selectedObject.GetComponent<NodeBehaviour>();
+            nodes.Remove(node);
+            foreach (var item in node.neightbours)
+            {
+                item.node.RemoveNeightbour(node);
+            }
             UpdateMatris();
             selectedObject = null;
+            Destroy(selectedObject);
         }
     }
 
@@ -223,10 +229,16 @@ public class GeneralManager : MonoBehaviour
     #region Settings Control
     public void DistanceTextShow()
     {
-        if (isDistanceText)
-            isDistanceText = false;
-        else
-            isDistanceText = true;
+        isDistanceEnable = !isDistanceEnable;
+        foreach (var obj in nodes)
+        {
+            foreach (var item in obj.neightbours)
+            {
+                item.line.child2.SetActive(isDistanceEnable);
+            }
+        }
+        
+        
     }
     #endregion
 }

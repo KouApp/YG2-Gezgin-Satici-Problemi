@@ -12,7 +12,7 @@ public class LineRendererCS : MonoBehaviour
 
     [Header("INPUT FIELD")]
     InputField inputField;
-    GameObject child2;
+    public GameObject child2;
 
     void Awake()
     {
