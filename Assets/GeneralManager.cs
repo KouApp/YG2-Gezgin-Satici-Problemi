@@ -12,6 +12,7 @@ public class GeneralManager : MonoBehaviour
     public GameObject node;
     public GameObject nodeS;
     public GameObject nodeText;
+    public GameObject square;
     [HideInInspector] public int i = 0;
 
     [Header("MATRIX")]
@@ -27,6 +28,10 @@ public class GeneralManager : MonoBehaviour
     [Header("CAMERA")]
     public Camera mainCamera;
     public float camMoveSpeed = 5f;
+
+    [Header("SETTINGS")]
+    public bool isDistanceText = true;
+
 
     private void Awake()
     {
@@ -77,7 +82,6 @@ public class GeneralManager : MonoBehaviour
         MouseInput();
         CameraZoom();
         CameraMovement();
-        //if press esc, call ClassAll
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             CloseAll();
@@ -170,13 +174,12 @@ public class GeneralManager : MonoBehaviour
 
     public void InstantiateNode()
     {
-        if (nodes.Count == 0)
+        square = GameObject.Find("Square");
+        if (square == null)
         {
             GameObject GO = Instantiate(nodeS, new Vector3(0, 0, 0), Quaternion.identity);
             i++;
             GO.name = i.ToString();
-            //GameObject txtObj = Instantiate(nodeText, GO.transform);
-            //txtObj.transform.parent = GO.transform;
             nodes.Add(GO.GetComponent<NodeBehaviour>());
             UpdateMatris();
         }
@@ -185,8 +188,6 @@ public class GeneralManager : MonoBehaviour
             GameObject GO = Instantiate(node, new Vector3(0, 0, 0), Quaternion.identity);
             i++;
             GO.name = i.ToString();
-            //GameObject txtObj = Instantiate(nodeText, GO.transform);
-            //txtObj.transform.parent = GO.transform;
             nodes.Add(GO.GetComponent<NodeBehaviour>());
             UpdateMatris();
         }
@@ -218,5 +219,14 @@ public class GeneralManager : MonoBehaviour
         settingsPanel.SetActive(false);
     }
 
+    #endregion
+    #region Settings Control
+    public void DistanceTextShow()
+    {
+        if (isDistanceText)
+            isDistanceText = false;
+        else
+            isDistanceText = true;
+    }
     #endregion
 }
