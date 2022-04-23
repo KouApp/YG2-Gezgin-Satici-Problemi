@@ -22,17 +22,20 @@ public class LineRendererCS : MonoBehaviour
             lr = GetComponent<LineRenderer>();
         }
     }
+    
     private void Start()
     {
         var child = transform.GetChild(0);
         child2 = child.transform.GetChild(0).gameObject;
         inputField = child2.GetComponent<InputField>();
     }
+    
     public void SetLines(GameObject lrStart, GameObject lrEnd)
     {
             this.lrStart = lrStart;
             this.lrEnd = lrEnd;
     }
+    
     private void SetLine(GameObject lrStart, GameObject lrEnd)
     {
         if (lrStart != null && lrEnd != null)
@@ -41,7 +44,6 @@ public class LineRendererCS : MonoBehaviour
             lr.SetPosition(1, lrEnd.transform.position);
         }
     }
-
 
     void Update()
     {
@@ -55,10 +57,5 @@ public class LineRendererCS : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(inputField);
         }
-        
-        //if (gm.isDistanceText)
-        //    child2.SetActive(true);
-        //else
-        //    child2.SetActive(false);
     }
 }

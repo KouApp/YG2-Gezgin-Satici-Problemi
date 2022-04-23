@@ -175,12 +175,6 @@ MonoBehaviour:
   i: 0
   nodes: []
   matrisText: {fileID: 892082224}
-  matrixPanel: {fileID: 1489496947}
-  helpPanel: {fileID: 409467009}
-  settingsPanel: {fileID: 125794788}
-  mainCamera: {fileID: 0}
-  camMoveSpeed: 5
-  isDistanceText: 1
 --- !u!1 &125794788
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.7254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -679,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.7254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -782,6 +776,51 @@ Transform:
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &637426096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637426098}
+  - component: {fileID: 637426097}
+  m_Layer: 0
+  m_Name: CameraManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &637426097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637426096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 580297fee5062334bb38105f12a6e68e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camMoveSpeed: 5
+--- !u!4 &637426098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637426096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 977.6502, y: 545.64374, z: 0.20249048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -933,7 +972,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725513770
 GameObject:
@@ -1206,8 +1245,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 14691118}
-        m_TargetAssemblyTypeName: GeneralManager, Assembly-CSharp
+      - m_Target: {fileID: 1890360333}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: DistanceTextShow
         m_Mode: 1
         m_Arguments:
@@ -1424,7 +1463,9 @@ MonoBehaviour:
     b\u0131rakmadan) yol olu\u015Fturmak istedi\u011Finiz d\xFC\u011F\xFCm\xFCn \xFCzerine
     s\xFCr\xFCkleyin ve farenin sa\u011F tu\u015Funu b\u0131rak\u0131n.\n\nFarenin
     tekerle\u011Fi ile ekran\u0131 yak\u0131nla\u015Ft\u0131rabilir veya uzakla\u015Ft\u0131rabilirsiniz.\n\nY\xF6n
-    tu\u015Flar\u0131 ile kameray\u0131 hareket ettirebilirsiniz."
+    tu\u015Flar\u0131 ile kameray\u0131 hareket ettirebilirsiniz.\n\n*Silme butonuna
+    bast\u0131\u011F\u0131n\u0131z s\u0131rada se\xE7ili bir d\xFC\u011F\xFCm olmasa
+    bile se\xE7ilmi\u015F olan son d\xFC\u011F\xFCm silinir!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1742,8 +1783,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 14691118}
-        m_TargetAssemblyTypeName: GeneralManager, Assembly-CSharp
+      - m_Target: {fileID: 1890360333}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: OpenMatrixPanel
         m_Mode: 1
         m_Arguments:
@@ -1885,7 +1926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 0.7254902}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2085,7 +2126,7 @@ RectTransform:
   - {fileID: 125794789}
   - {fileID: 409467010}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2209,8 +2250,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 14691118}
-        m_TargetAssemblyTypeName: GeneralManager, Assembly-CSharp
+      - m_Target: {fileID: 1890360333}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: OpenSettingsPanel
         m_Mode: 1
         m_Arguments:
@@ -2346,8 +2387,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 14691118}
-        m_TargetAssemblyTypeName: GeneralManager, Assembly-CSharp
+      - m_Target: {fileID: 1890360333}
+        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
         m_MethodName: OpenHelpPanel
         m_Mode: 1
         m_Arguments:
@@ -2446,6 +2487,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848472782}
   m_CullTransparentMesh: 1
+--- !u!1 &1890360332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890360334}
+  - component: {fileID: 1890360333}
+  m_Layer: 0
+  m_Name: ButtonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1890360333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890360332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec854720623087468fa3a37c408dfba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matrixPanel: {fileID: 1489496947}
+  helpPanel: {fileID: 409467009}
+  settingsPanel: {fileID: 125794788}
+  isDistanceEnable: 1
+  nodes: []
+--- !u!4 &1890360334
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890360332}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 977.6502, y: 545.64374, z: 0.20249048}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2056989366
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,6 @@ public class TempNode : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Node entered");
         if (other.CompareTag("node"))
         {
             node = other.gameObject;
@@ -18,7 +17,6 @@ public class TempNode : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Node exited");
         if (other.CompareTag("node"))
         {
             node = null;
