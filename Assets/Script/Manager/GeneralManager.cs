@@ -22,6 +22,7 @@ public class GeneralManager : MonoBehaviour
 
     private void Awake()
     {
+        //Singleton method
         if (instance == null)
         {
             instance = this;
@@ -48,11 +49,12 @@ public class GeneralManager : MonoBehaviour
             {
                 //find nodes[i].neightbours[t] in nodes list
                 int index = nodes.FindIndex(x => x == nodes[i].neightbours[t].node);
-                matris[i][t] = nodes[i].neightbours[t].distance; ///matris[i][index] idi ben deðiþtirdim
+                matris[i][t] = nodes[i].neightbours[t].distance; ///matris[i][index] iken matris[i][t] olarak deðiþtirdim
             }
             matris[i][i] = 0;
         }
 
+        //matrisler düzgün yazýlmýyor, hata üstteki kodda mý alttaki kodda mý bilmiyorum
         matrisText.text = "";
         for (int i = 0; i < nodes.Count; i++)
         {
@@ -72,6 +74,7 @@ public class GeneralManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            //sol mouse ile týklayýnca bütün nodelar beyaz oluyor. Sonra, raycasthite denk gelen node cyan oluyor.
             Vector2 raycastPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(raycastPosition, Vector2.zero);
 
@@ -105,6 +108,7 @@ public class GeneralManager : MonoBehaviour
 
     public void InstantiateNode()
     {
+        //Sahnede square yoksa instantiate edilen node square oluyor. Her instantiate edilen node ile i artýyor ve i deðiþkeni nodeun üzerine yazdýrýlýyor.
         square = GameObject.Find("Square");
         if (square == null)
         {

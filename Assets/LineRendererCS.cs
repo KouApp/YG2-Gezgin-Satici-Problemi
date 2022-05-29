@@ -16,7 +16,7 @@ public class LineRendererCS : MonoBehaviour
 
     void Awake()
     {
-        this.name = "line" + this.GetInstanceID();
+        this.name = "line" + this.GetInstanceID(); //Sahnede ayýrt edilebilsin diye her line rendererýn unique adý var.
         if (lr == null)
         {
             lr = GetComponent<LineRenderer>();

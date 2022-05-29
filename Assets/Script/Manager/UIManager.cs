@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
             CloseAll();
         }
     }
+    //Aþaðýda UI panelleri açýlýp kapatýlýyor
     public void OpenMatrixPanel()
     {
         matrixPanel.SetActive(true);
@@ -51,6 +52,7 @@ public class UIManager : MonoBehaviour
         settingsPanel.SetActive(false);
     }
 
+    //Nodelar arasýndaki mesafeyi gösteren text açýlýp kapatýlýyor.
     public void DistanceTextShow()
     {
         isDistanceEnable = !isDistanceEnable;
