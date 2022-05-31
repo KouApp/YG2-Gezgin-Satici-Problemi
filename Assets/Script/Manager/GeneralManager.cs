@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,16 +8,14 @@ public class GeneralManager : MonoBehaviour
 {
     public static GeneralManager instance;
 
-    [Header("OBJECTS")]
-    [SerializeField] GameObject selectedObject;
+    [Header("OBJECTS")] [SerializeField] GameObject selectedObject;
     public GameObject node;
     public GameObject nodeS;
     public GameObject nodeText;
     public GameObject square;
     [HideInInspector] public int i = 0;
 
-    [Header("MATRIX")]
-    public List<NodeBehaviour> nodes = new();
+    [Header("MATRIX")] public List<NodeBehaviour> nodes = new();
     private float[][] matris;
     public Text matrisText;
 
@@ -49,14 +48,16 @@ public class GeneralManager : MonoBehaviour
             {
                 //find nodes[i].neightbours[t] in nodes list
                 int index = nodes.FindIndex(x => x == nodes[i].neightbours[t].node);
-                if(index != -1)
+                if (index != -1)
                 {
                     matris[i][index] = nodes[i].neightbours[t].GetDistance();
                     Debug.Log("matris[" + i + "][" + index + "] = " + matris[i][index]);
                 }
             }
+
             matris[i][i] = 0;
         }
+
         //matrisler düzgün yazýlmýyor, hata üstteki kodda mý alttaki kodda mý bilmiyorum
         matrisText.text = "";
         for (int i = 0; i < nodes.Count; i++)
@@ -64,13 +65,15 @@ public class GeneralManager : MonoBehaviour
             for (int t = 0; t < nodes.Count; t++)
             {
                 matrisText.text += matris[i][t].ToString("0.00");
-                if (t != nodes.Count-1)
+                if (t != nodes.Count - 1)
                 {
                     matrisText.text += "\t,\t";
                 }
             }
+
             matrisText.text += "\n";
-        }      
+        }
+
         Debug.Log(matrisText.text);
     }
 
@@ -105,6 +108,7 @@ public class GeneralManager : MonoBehaviour
             {
                 item.node.RemoveNeightbour(node);
             }
+
             UpdateMatris();
             Destroy(selectedObject);
         }
@@ -132,9 +136,22 @@ public class GeneralManager : MonoBehaviour
         }
     }
 
-    public void EmptyFunc()
+    public void UseGSP()
     {
-        //Algoritmayi calistiran onclick fonksiyonu
+        GSA gsa = new GSA();
+        UpdateMatris();
+        StartCoroutine(Animation(gsa.GSP(matris, 0)));
     }
 
+
+    private IEnumerator Animation(Path[] path)
+    {
+        foreach (var v in path)
+        {
+            yield return new WaitForSeconds(.5f);
+            nodes[v.current].GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(2f);
+            nodes[v.current].GetComponent<SpriteRenderer>().color = Color.green;
+        }
+    }
 }

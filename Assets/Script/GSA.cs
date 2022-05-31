@@ -75,7 +75,7 @@ public class GSA
     // single source shortest path algorithm
     // for a graph represented using adjacency
     // matrix representation
-    public void GSP(float[][] graph, int src)
+    public Path[] GSP(float[][] graph, int src)
     {
         int nodeCount = graph.GetLength(0);
         bool[] sptSet = new bool[nodeCount];
@@ -97,7 +97,7 @@ public class GSA
             path = GetPaths(path, dist, now, prev);
             sptSet[now] = true;
         }
-
+        
         prev = now;
         Path[] distt = Dijkstra(graph, now);
         List<Path> rpath = new List<Path>();
@@ -108,6 +108,8 @@ public class GSA
         {
             Debug.Log(item.current + "-");
         }
+
+        return path.ToArray();
         //printSolution(path.ToArray());
     }
 
@@ -173,6 +175,7 @@ public class GSA
             return list;
         list.Add(paths[now]);
         GetPaths(list, paths, paths[now].prev, prev);
+        
         return list;
     }
 }
