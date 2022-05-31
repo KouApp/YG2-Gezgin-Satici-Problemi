@@ -34,7 +34,7 @@ public class NodeBehaviour : MonoBehaviour
     
     public void AddNeightbour(NeighbourNode node)
     {
-        node.CalculateDistance(gameObject);
+        //node.CalculateDistance(gameObject);
         neightbours.Add(node);
         GeneralManager.instance.UpdateMatris();
     }
@@ -49,21 +49,26 @@ public class NeighbourNode
 {
     public NodeBehaviour node { get; private set; }
     public LineRendererCS line { get; private set; }
-    public float distance { get; private set; }
 
+    public float Distance
+    {
+        get; private set;
+    }
+
+    public float GetDistance() => line.distance;
     public NeighbourNode(NodeBehaviour node, LineRendererCS line, float distance)
     {
         this.node = node;
         this.line = line;
-        this.distance = distance;
+        this.Distance = distance;
     }
     public void CalculateDistance(GameObject nodeGameObject)
     {
-        distance = Vector2.Distance(nodeGameObject.transform.position, node.transform.position);
+        Distance = Vector2.Distance(nodeGameObject.transform.position, node.transform.position);
     }
 
     public void SetDistance(float distance)
     {
-        this.distance = distance;
+        this.Distance = distance;
     }
 }

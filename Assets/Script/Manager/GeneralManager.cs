@@ -49,32 +49,36 @@ public class GeneralManager : MonoBehaviour
             {
                 //find nodes[i].neightbours[t] in nodes list
                 int index = nodes.FindIndex(x => x == nodes[i].neightbours[t].node);
-                matris[i][t] = nodes[i].neightbours[t].distance; ///matris[i][index] iken matris[i][t] olarak değiştirdim
+                if(index != -1)
+                {
+                    matris[i][index] = nodes[i].neightbours[t].GetDistance();
+                    Debug.Log("matris[" + i + "][" + index + "] = " + matris[i][index]);
+                }
             }
             matris[i][i] = 0;
         }
-
-        //matrisler düzgün yazılmıyor, hata üstteki kodda mı alttaki kodda mı bilmiyorum
+        //matrisler dÃ¼zgÃ¼n yazÃ½lmÃ½yor, hata Ã¼stteki kodda mÃ½ alttaki kodda mÃ½ bilmiyorum
         matrisText.text = "";
         for (int i = 0; i < nodes.Count; i++)
         {
             for (int t = 0; t < nodes.Count; t++)
             {
-                matrisText.text += Mathf.Round(matris[i][t]);
+                matrisText.text += matris[i][t].ToString("0.00");
                 if (t != nodes.Count-1)
                 {
-                    matrisText.text += ",";
+                    matrisText.text += "\t,\t";
                 }
             }
             matrisText.text += "\n";
         }      
+        Debug.Log(matrisText.text);
     }
 
     void MouseInput()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            //sol mouse ile tıklayınca bütün nodelar beyaz oluyor. Sonra, raycasthite denk gelen node cyan oluyor.
+            //sol mouse ile tÃ½klayÃ½nca bÃ¼tÃ¼n nodelar beyaz oluyor. Sonra, raycasthite denk gelen node cyan oluyor.
             Vector2 raycastPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(raycastPosition, Vector2.zero);
 
@@ -108,7 +112,7 @@ public class GeneralManager : MonoBehaviour
 
     public void InstantiateNode()
     {
-        //Sahnede square yoksa instantiate edilen node square oluyor. Her instantiate edilen node ile i artıyor ve i değişkeni nodeun üzerine yazdırılıyor.
+        //Sahnede square yoksa instantiate edilen node square oluyor. Her instantiate edilen node ile i artÃ½yor ve i deÃ°iÃ¾keni nodeun Ã¼zerine yazdÃ½rÃ½lÃ½yor.
         square = GameObject.Find("Square");
         if (square == null)
         {
