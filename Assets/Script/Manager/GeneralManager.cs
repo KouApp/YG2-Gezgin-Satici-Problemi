@@ -132,5 +132,9 @@ public class GeneralManager : MonoBehaviour
         }
     }
 
-    
+    public void EmptyFunc()
+    {
+        //Algoritmayi calistiran onclick fonksiyonu
+    }
+
 }

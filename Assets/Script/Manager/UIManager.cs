@@ -31,25 +31,16 @@ public class UIManager : MonoBehaviour
     {
         matrixPanel.SetActive(true);
         helpPanel.SetActive(false);
-        settingsPanel.SetActive(false);
     }
     public void OpenHelpPanel()
     {
         helpPanel.SetActive(true);
         matrixPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-    }
-    public void OpenSettingsPanel()
-    {
-        settingsPanel.SetActive(true);
-        matrixPanel.SetActive(false);
-        helpPanel.SetActive(false);
     }
     public void CloseAll()
     {
         matrixPanel.SetActive(false);
         helpPanel.SetActive(false);
-        settingsPanel.SetActive(false);
     }
 
     //Nodelar arasýndaki mesafeyi gösteren text açýlýp kapatýlýyor.
