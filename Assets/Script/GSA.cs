@@ -94,14 +94,17 @@ public class GSA
             prev = now;
             Path[] dist = Dijkstra(graph, now);
             now = MinDistance(dist, sptSet);
-            path = GetPaths(path, dist, now, prev);
+            List<Path> temp = new List<Path>();
+            temp = GetPaths(dist, now, prev);
+            temp.Reverse();
+            path.AddRange(temp);
             sptSet[now] = true;
         }
         
         prev = now;
         Path[] distt = Dijkstra(graph, now);
         List<Path> rpath = new List<Path>();
-        rpath = GetPaths(rpath, distt, 0, prev);
+        rpath = GetPaths(distt, 0, prev);
         rpath.Reverse();
         path.AddRange(rpath);
         foreach (var item in path)
@@ -169,13 +172,13 @@ public class GSA
         PrintPath(paths, paths[i].prev);
     }
 
-    List<Path> GetPaths(List<Path> list, Path[] paths, int now, int prev)
+    List<Path> GetPaths(Path[] paths, int now,int prev)
     {
+        List<Path> list = new List<Path>();
         if (now == prev)
             return list;
         list.Add(paths[now]);
-        GetPaths(list, paths, paths[now].prev, prev);
-        
+        list.AddRange(GetPaths(paths, paths[now].prev,prev));
         return list;
     }
 }
