@@ -103,15 +103,16 @@ public class InputManager : MonoBehaviour
             {
                 GameObject temp = tempRightSelected;
                 tempRightSelected = tempRightSelected.GetComponent<TempNode>().node;
-                if(currentRightSelected.name == tempRightSelected.name
-                   || (currentRightSelected.GetComponent<NodeBehaviour>().neightbours.FindIndex(x => x.node.name == tempRightSelected.name) >=0)
-                   || (tempRightSelected.GetComponent<NodeBehaviour>().neightbours.FindIndex(x => x.node.name == currentRightSelected.name) >=0))
+                
+                if (tempRightSelected)
                 {
-                    Destroy(tempLine.gameObject);
-                    Destroy(temp.gameObject);
-                }
-                else  if (tempRightSelected)
-                {
+                    if(currentRightSelected.name == tempRightSelected.name
+                       || (currentRightSelected.GetComponent<NodeBehaviour>().neightbours.FindIndex(x => x.node.name == tempRightSelected.name) >=0)
+                       || (tempRightSelected.GetComponent<NodeBehaviour>().neightbours.FindIndex(x => x.node.name == currentRightSelected.name) >=0))
+                    {
+                        Destroy(tempLine.gameObject);
+                        Destroy(temp.gameObject);
+                    }
                     currentRightSelected.GetComponent<NodeBehaviour>().AddNeightbour(new NeighbourNode(tempRightSelected.GetComponent<NodeBehaviour>(), tempLine, 0));
                     tempRightSelected.GetComponent<NodeBehaviour>().AddNeightbour(new NeighbourNode(currentRightSelected.GetComponent<NodeBehaviour>(), tempLine, 0));
                     tempLine.SetLines(currentRightSelected, tempRightSelected);
