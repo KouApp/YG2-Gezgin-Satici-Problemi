@@ -150,7 +150,7 @@ public class GeneralManager : MonoBehaviour
         {
             yield return new WaitForSeconds(.5f);
             nodes[v.current].GetComponent<SpriteRenderer>().color = Color.red;
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             nodes[v.current].GetComponent<SpriteRenderer>().color = Color.green;
         }
     }

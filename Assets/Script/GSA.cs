@@ -141,7 +141,7 @@ public class GSA
 
             for (int v = 0; v < length; v++)
             {
-                if (!sptSet[v] && graph[u][v] != 0 && dist[u] != int.MaxValue && dist[u] + graph[u][v] < dist[v])
+                if (!sptSet[v] && graph[u][v] != 0 && dist[u] != float.MaxValue && dist[u] + graph[u][v] < dist[v])
                 {
                     dist[v] = dist[u] + graph[u][v];
                     paths[v].current = v;
