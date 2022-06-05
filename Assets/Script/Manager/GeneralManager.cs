@@ -19,6 +19,8 @@ public class GeneralManager : MonoBehaviour
     private float[][] matris;
     public Text matrisText;
 
+    public Text pathText;
+
     private void Awake()
     {
         //Singleton method
@@ -87,7 +89,7 @@ public class GeneralManager : MonoBehaviour
 
             foreach (GameObject obj in GameObject.FindGameObjectsWithTag("node"))
             {
-                obj.GetComponent<SpriteRenderer>().color = Color.white;
+                obj.GetComponent<SpriteRenderer>().color = Color.yellow;
             }
 
             if (hit)
@@ -146,10 +148,12 @@ public class GeneralManager : MonoBehaviour
 
     private IEnumerator Animation(Path[] path)
     {
+        pathText.text = "";
         foreach (var v in path)
         {
             yield return new WaitForSeconds(.5f);
             nodes[v.current].GetComponent<SpriteRenderer>().color = Color.red;
+            pathText.text += nodes[v.current].name + ", ";
             yield return new WaitForSeconds(1f);
             nodes[v.current].GetComponent<SpriteRenderer>().color = Color.green;
         }
